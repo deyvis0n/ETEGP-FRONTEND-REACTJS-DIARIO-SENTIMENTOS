@@ -1,18 +1,20 @@
 import { useState } from 'react'
-
 import AuthService from '../../services/auth.service'
 
 export default function Login() {
-
+    const [erroState, setErroState] = useState({
+        stateError: false,
+        messageErro: ''
+    })
     const [state, setState] = useState({
         username: '',
         password: '',
-        messageErro: ''
     })
 
     function handleState(event) {
         state[event.target.name] = event.target.value
         setState(state)
+        setErroState({ stateErro: false })
     }
 
     function handleLogin(event) {
@@ -27,7 +29,7 @@ export default function Login() {
                     ((error.response && error.response.data && error.response.data.message) ||
                     error.message || error.toString())
 
-                setState({messageErro: resErro})
+                    setErroState({ stateError: true, messageErro: resErro })
             }
         )
     }
@@ -36,14 +38,13 @@ export default function Login() {
         <div className='col-md-12'>
             <div className='card card-container'>
                 <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                    alt="profile-img"
-                    className="profile-img-card"
+                    src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+                    alt='profile-img'
+                    className='profile-img-card'
                 />
 
                 <form onSubmit={handleLogin}>
-
-                    <div className='form-froup'>
+                    <div className='form-group'>
                         <label htmlFor='username'>Username</label>
                         <input
                             type='text'
@@ -67,14 +68,21 @@ export default function Login() {
 
                     <div className='form-group'>
                         <button
-                            type='submit'
-                            className='btn btn-primary btn-blck'
-                        >Entrar</button>
+                            type='submmit'
+                            className='btn btn-primary'
+                        >Entrar
+                        </button>
                     </div>
 
-                    <div>
-                        {state.messageErro}
-                    </div>
+                    <a className='btn btn-secondary' href='/register' role='button'>Criar Conta</a>
+
+                    {erroState.stateError && (
+                        <div className='form-group'>
+                            <div className='alert alert-danger' role='alert'>
+                                {erroState.messageErro}
+                            </div>
+                        </div>
+                    )}
                 </form>
             </div>
         </div>

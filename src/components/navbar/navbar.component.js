@@ -12,7 +12,7 @@ export default function NavBar() {
 
     return (
         <nav className='navbar navbar-expand navbar-dark bg-dark'>
-            <Link to={'/login'} className='navbar-brand'>
+            <Link to={'/home'} className='navbar-brand'>
                 Meu Site
              </Link>
             { currentUser ? (

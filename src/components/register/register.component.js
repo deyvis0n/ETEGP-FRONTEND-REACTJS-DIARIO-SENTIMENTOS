@@ -3,18 +3,21 @@ import { useState } from 'react'
 import AuthService from '../../services/auth.service'
 
 export default function Login() {
-
+    const [erroState, setErroState] = useState({
+        stateError: false,
+        messageErro: ''
+    })
     const [state, setState] = useState({
         username: '',
         email: '',
         password: '',
-        successful: false,
-        message:''
+        successful: false
     })
 
     function handleState(event) {
         state[event.target.name] = event.target.value
         setState(state)
+        setErroState({ stateErro: false })
     }
 
     function handleRegister(event) {
@@ -33,7 +36,7 @@ export default function Login() {
                     ((error.response && error.response.data && error.response.data.message) ||
                     error.message || error.toString())
                 
-                    setState({message: resErro})
+                    setErroState({ stateError: true, messageErro: resErro })
                 }
             )
     }
@@ -42,9 +45,9 @@ export default function Login() {
         <div className='col-md-12'>
             <div className='card card-container'>
                 <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                    alt="profile-img"
-                    className="profile-img-card"
+                    src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+                    alt='profile-img'
+                    className='profile-img-card'
                 />
                 {!state.successful ? (
                     <form onSubmit={handleRegister}>
@@ -92,10 +95,16 @@ export default function Login() {
                             className='btn btn-primary btn-blck'
                         >Cadastre-se</button>
                     </div>
+
+                    <a className='btn btn-secondary' href='/login' role='button'>Logar</a>
                     
-                    <div>
-                        {state.message}
-                    </div>
+                    {erroState.stateError && (
+                        <div className='form-group'>
+                            <div className='alert alert-danger' role='alert'>
+                                {erroState.messageErro}
+                            </div>
+                        </div>
+                    )}
 
                 </form>
                 ) : (

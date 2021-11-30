@@ -17,14 +17,17 @@ export default function Home() {
     }
     return(
         <div>
+            <h2>Postagens Recentes</h2>
             {getRecentPost && 
                 getRecentPost.map((value) =>
-                <div className="card border-dark mb-3" key={value._id}>
-                    <div className="card-header bg-transparent border-dark">Postado Por {value.username}</div>
-                    <div className="card-body text-dark">
-                        <p className="card-text">{value.userMessage}</p>
+                <div className='col-md-6'>
+                    <div className='card border-dark mb-3' key={value._id}>
+                        <div className='card-header bg-transparent border-gray'>Postado Por {value.username}</div>
+                        <div className='card-body text-dark'>
+                            <p className='card-text'>{value.userMessage}</p>
+                        </div>
+                        <div className='card-footer bg-transparent border-gray'>postado as {value.createOn}</div>
                     </div>
-                    <div className="card-footer bg-transparent border-dark">{value.createOn}</div>
                 </div>
                 )}
         </div>

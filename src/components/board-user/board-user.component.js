@@ -25,7 +25,7 @@ export default function BoardUser() {
     function getPost() {
         const getPostValue = async () => {
             const value = await UserService.getUserPost()
-
+            console.log(value)
             setGetUserPost(value)
             
         }
@@ -63,22 +63,25 @@ export default function BoardUser() {
                     >Postar</button>
                 </div>
             </form>
+            <h2>Minhas Postagens</h2>
             {getUserPost && 
                 getUserPost.map((value) =>
-                <div className="card border-dark mb-3" key={value._id}>
-                    <div className="card-header bg-transparent border-dark">Postado Por {value.username}</div>
-                    <div className="card-body text-dark">
-                        <p className="card-text">{value.userMessage}</p>
-                    </div>
-                    <div className="card-footer bg-transparent border-dark">{value.createOn}
-                        <form onSubmit={deletePost}>
-                            <button
-                            name='deletepost'
-                            type='submit'
-                            className='btn btn-primary btn-blck'
-                            value={value._id}
-                            >Deletar</button>
-                        </form>
+                <div className='col-md-6'>
+                    <div className='card border-dark mb-3' key={value._id}>
+                        <div className='card-header bg-transparent border-gray'>Postado Por {value.username}</div>
+                        <div className='card-body text-dark'>
+                            <p className='card-text'>{value.userMessage}</p>
+                        </div>
+                        <div className='card-footer bg-transparent border-gray'>Postado as {value.createOn}
+                            <form onSubmit={deletePost}>
+                                <button
+                                name='deletepost'
+                                type='submit'
+                                className='btn btn-primary btn-sm'
+                                value={value._id}
+                                >Deletar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 )}

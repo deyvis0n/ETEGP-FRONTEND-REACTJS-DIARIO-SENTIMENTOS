@@ -8,8 +8,8 @@ export default function Profile() {
     return(
         
         <div>
-            <h3>Perfil {currentUser.username}</h3>
-            <h2>Email {currentUser.email}</h2>
+            <h2>Perfil {currentUser.username}</h2>
+            <h3>Email {currentUser.email}</h3>
         </div>
 
     )
