@@ -42,10 +42,10 @@ export default function BoardUser() {
         <div>
             <h2>Minha Pagina</h2>
 
-            Bem vindo {currentUser.username}
+            <h3>Bem vindo {currentUser.username}</h3>
 
             <form onSubmit={handlePost}>
-                <div className='form-group'>
+                <div className='form-group col-md-6'>
                     <label htmlFor='userPost'></label>
                     <textarea 
                     className='form-control' 
