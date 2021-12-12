@@ -110,8 +110,7 @@ export default function Login() {
                 ) : (
                     <div className='form-group'>
                         <div>
-                            Usuario Cadastrado!<br/>
-                            Realize o Loguin Para Pode Continuar
+                            Realize o login para continuar.
                         </div>
                         <form action='/login'>
                             <button

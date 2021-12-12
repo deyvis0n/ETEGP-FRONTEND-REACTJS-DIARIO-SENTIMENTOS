@@ -37,3 +37,33 @@ label {
   color: white;
   margin-bottom: 15px;
 }
+
+.navbar {
+  background-color: yellow;
+}
+
+.navbar-brand {
+  margin-left: 20px;
+  color: black;
+}
+
+.nav-link {
+  color: black
+}
+
+.home {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-titulo {
+  font-size: 50px
+}
+
+.home-subtitulo {
+  font-size: 25px;
+}
+
+.btn-home {
+  margin-top: 50px;
+}

@@ -11,7 +11,7 @@ export default function NavBar() {
     }
 
     return (
-        <nav className='navbar navbar-expand navbar-dark bg-dark'>
+        <nav className='navbar navbar-expand'>
             <Link to={'/home'} className='navbar-brand'>
                 Meu Site
              </Link>
