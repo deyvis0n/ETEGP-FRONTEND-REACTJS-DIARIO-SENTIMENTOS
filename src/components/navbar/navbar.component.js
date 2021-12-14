@@ -28,11 +28,6 @@ export default function NavBar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to={'/profile'} className='nav-link'>
-                            Perfil
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
                         <a href='/login' className='nav-link' onClick={logOut}>
                             Sair
                         </a>
