@@ -1,39 +1,33 @@
 import axios from 'axios'
 import authHeader from './auth-header'
 
-const API_URL = 'https://api-diario-sentimetos.herokuapp.com/api/user'
+const API_URL = 'https://diario-de-sentimentos-api.herokuapp.com/api'
 
 class UserService {
-    postUserPost(userMessage, username) {
+    postUserPost(message) {
         return axios
-        .post(API_URL + '/postMessage', { userMessage, username }, { headers: authHeader() })
+        .post(API_URL + '/user-post', { message }, { headers: authHeader() })
+        .then(response => {
+            console.warn(response.data)
+        })
     }
 
     getUserPost() {
         return axios
-        .get(API_URL + '/getUserPost', { headers: authHeader() })
+        .get(API_URL + '/user-post', { headers: authHeader() })
         .then(response => {
-            
             return response.data
         })
     }
 
-    deleteUserPost(_id) {
+    deleteUserPost(id) {
         return axios
-        .post(API_URL + '/deleteUserPost', { _id }, { headers: authHeader() })
-    }
-
-    getUserName( _id ) {
-        return axios
-        .get(API_URL + '/getUserName', { _id })
-        .then(response => {
-            return response.data
-        })
+        .post(API_URL + '/user-post-delete', { id }, { headers: authHeader() })
     }
 
     getRecentPost() {
         return axios
-        .get(API_URL + '/getRecentPosts', { headers: authHeader() })
+        .get(API_URL + '/all-post', { headers: authHeader() })
         .then(response => {
             return response.data
         })

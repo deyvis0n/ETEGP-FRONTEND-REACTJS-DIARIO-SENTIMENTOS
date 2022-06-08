@@ -7,7 +7,7 @@ export default function Login() {
         messageErro: ''
     })
     const [state, setState] = useState({
-        username: '',
+        email: '',
         password: '',
     })
 
@@ -19,7 +19,7 @@ export default function Login() {
 
     function handleLogin(event) {
         event.preventDefault()
-        AuthService.login(state.username, state.password).then(
+        AuthService.login(state.email, state.password).then(
             () => {
                 window.location.reload()
                 window.location = '/board-user'
@@ -44,19 +44,19 @@ export default function Login() {
                 />
 
                 <form onSubmit={handleLogin}>
-                    <div className='form-group'>
-                        <label htmlFor='username'>Username</label>
+                    <div className='form-froup'>
+                        <label htmlFor='email'>E-mail</label>
                         <input
-                            type='text'
+                            type='email'
                             className='form-control'
-                            name='username'
+                            name='email'
                             onChange={handleState}
                             required
                         />
                     </div>
 
                     <div className='form-group'>
-                        <label htmlFor='password'>Password</label>
+                        <label htmlFor='password'>Senha</label>
                         <input
                             type='password'
                             className='form-control'
@@ -65,16 +65,15 @@ export default function Login() {
                             required
                         />
                     </div>
-
                     <div className='form-group'>
                         <button
                             type='submmit'
-                            className='btn btn-primary'
+                            className='btn btn-primary btn-gp'
                         >Entrar
                         </button>
                     </div>
 
-                    <a className='btn btn-secondary' href='/register' role='button'>Criar Conta</a>
+                    <a className='btn btn-secondary btn-gp' href='/register' role='button'>Criar Conta</a>
 
                     {erroState.stateError && (
                         <div className='form-group'>

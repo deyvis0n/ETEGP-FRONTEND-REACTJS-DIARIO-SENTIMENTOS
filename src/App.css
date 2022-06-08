@@ -67,3 +67,18 @@ label {
 .btn-home {
   margin-top: 50px;
 }
+
+.board-user {
+  margin-left: 16px;
+  margin-left: 16px;
+  margin-top: 26px;
+}
+
+.btn-form {
+  margin-top: 16px;
+}
+
+.btn-gp {
+  margin-top: 16px;
+  width: 100%;
+}

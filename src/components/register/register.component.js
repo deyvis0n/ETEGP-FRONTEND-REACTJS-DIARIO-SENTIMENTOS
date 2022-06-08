@@ -8,9 +8,10 @@ export default function Login() {
         messageErro: ''
     })
     const [state, setState] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
+        passwordConfirmation: '',
         successful: false
     })
 
@@ -24,9 +25,10 @@ export default function Login() {
         event.preventDefault()
         
         AuthService.register(
-            state.username, 
+            state.name, 
             state.email, 
-            state.password
+            state.password,
+            state.passwordConfirmation
             ).then(
                 response => {
                     setState({message: response.data.message})
@@ -53,11 +55,11 @@ export default function Login() {
                     <form onSubmit={handleRegister}>
 
                     <div className='form-froup'>
-                        <label htmlFor='username'>Username</label>
+                        <label htmlFor='username'>Nome</label>
                         <input
                             type='text'
                             className='form-control'
-                            name='username'
+                            name='name'
                             onChange={handleState}
                             required
                             minLength='3'
@@ -77,7 +79,7 @@ export default function Login() {
                     </div>
 
                     <div className='form-group'>
-                        <label htmlFor='password'>Password</label>
+                        <label htmlFor='password'>Senha</label>
                         <input
                             type='password'
                             className='form-control'
@@ -85,18 +87,31 @@ export default function Login() {
                             onChange={handleState}
                             required
                             minLength='8'
-                            maxLength='20'
+                            maxLength='16'
+                        />
+                    </div>
+
+                    <div className='form-group'>
+                        <label htmlFor='password'>Confirmar Senha</label>
+                        <input
+                            type='password'
+                            className='form-control'
+                            name='passwordConfirmation'
+                            onChange={handleState}
+                            required
+                            minLength='8'
+                            maxLength='16'
                         />
                     </div>
 
                     <div className='form-group'>
                         <button
                             type='submit'
-                            className='btn btn-primary btn-blck'
+                            className='btn btn-primary btn-blck btn-gp'
                         >Cadastre-se</button>
                     </div>
 
-                    <a className='btn btn-secondary' href='/login' role='button'>Logar</a>
+                    <a className='btn btn-secondary btn-gp' href='/login' role='button'>Logar</a>
                     
                     {erroState.stateError && (
                         <div className='form-group'>

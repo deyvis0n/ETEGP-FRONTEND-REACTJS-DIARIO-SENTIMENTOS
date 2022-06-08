@@ -18,16 +18,21 @@ export default function BoardUser() {
 
     function handlePost(event) {
         event.preventDefault()
-        UserService.postUserPost(state.userPost, currentUser.username)
+        UserService.postUserPost(state.userPost)
         window.location.reload()
     }
 
     function getPost() {
         const getPostValue = async () => {
-            const value = await UserService.getUserPost()
-            console.log(value)
-            setGetUserPost(value)
-            
+            const values = await UserService.getUserPost()
+            for (const value of values) {
+                const date = new Date(value.date)
+                const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+                const formatedDate = ((date.getHours())) + ' horas e ' + ((date.getMinutes())) + ' minutos do dia ' + ((date.getDate())) + ' de ' + meses[((date.getMonth()))] + ' de ' + ((date.getFullYear()))
+                Object.assign(value, { date: formatedDate })
+            }
+            const reverseValue = values.reverse()
+            setGetUserPost(reverseValue)
         }
         getPostValue()
     }
@@ -39,10 +44,10 @@ export default function BoardUser() {
     }
 
     return(
-        <div>
+        <div className='board-user'>
             <h2>Minha Pagina</h2>
 
-            <h3>Bem vindo {currentUser.username}</h3>
+            <h3>Bem vindo {currentUser.name}</h3>
 
             <form onSubmit={handlePost}>
                 <div className='form-group col-md-6'>
@@ -56,7 +61,7 @@ export default function BoardUser() {
                     ></textarea>
                 </div>
                 
-                <div className='form-group'>
+                <div className='form-group btn-form'>
                     <button
                         type='submit'
                         className='btn btn-primary btn-blck'
@@ -67,18 +72,18 @@ export default function BoardUser() {
             {getUserPost && 
                 getUserPost.map((value) =>
                 <div className='col-md-6'>
-                    <div className='card border-dark mb-3' key={value._id}>
-                        <div className='card-header bg-transparent border-gray'>Postado Por {value.username}</div>
+                    <div className='card border-dark mb-3' key={value}>
+                        <div className='card-header bg-transparent border-gray'>Postado Por {value.userName}</div>
                         <div className='card-body text-dark'>
-                            <p className='card-text'>{value.userMessage}</p>
+                            <p className='card-text'>{value.message}</p>
                         </div>
-                        <div className='card-footer bg-transparent border-gray'>Postado as {value.createOn}
+                        <div className='card-footer bg-transparent border-gray'>Postado as {value.date}
                             <form onSubmit={deletePost}>
                                 <button
                                 name='deletepost'
                                 type='submit'
                                 className='btn btn-primary btn-sm'
-                                value={value._id}
+                                value={value.id}
                                 >Deletar</button>
                             </form>
                         </div>

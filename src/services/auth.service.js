@@ -1,13 +1,11 @@
 import axios from 'axios'
 
-const API_URL = 'https://api-diario-sentimetos.herokuapp.com/api/auth'
+const API_URL = 'https://diario-de-sentimentos-api.herokuapp.com/api'
 
 class AuthService {
-    login(username, password) {
-        console.log(username, password)
-        return axios
-        .post(API_URL + '/signin', {
-            username,
+    login(email, password) {
+        return axios.post(API_URL + '/login', {
+            email,
             password
         })
         .then(response => {
@@ -22,11 +20,12 @@ class AuthService {
         localStorage.removeItem('user')
     }
 
-    register(username, email, password) {
+    register(name, email, password, passwordConfirmation) {
         return axios.post(API_URL + '/signup', {
-            username,
+            name,
             email,
-            password
+            password,
+            passwordConfirmation
         })
     }
 
