@@ -23,7 +23,10 @@ export default function Login() {
 
     function handleRegister(event) {
         event.preventDefault()
-        
+        const test = handleValid()
+        if (test) {
+            return
+        }
         AuthService.register(
             state.name, 
             state.email, 
@@ -41,6 +44,46 @@ export default function Login() {
                     setErroState({ stateError: true, messageErro: resErro })
                 }
             )
+    }
+
+    function handleValid(event) {
+        const regexEmail = /^[a-zA-Z]{3,20}\.[a-zA-Z]{3,20}@aluno.educacao.pe.gov.br$/
+        const regexSenha = [
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&*.?;, ]).{8,16}$/,
+            /^(?=.*[a-z]).{8,16}$/,
+            /^(?=.*[A-Z]).{8,16}$/,
+            /^(?=.*[0-9]).{8,16}$/,
+            /^(?=.*[!@#$%&*.?;, ]).{8,16}$/
+        ]
+        if (!regexEmail.test(state.email)) {
+            setErroState({ stateError: true, messageErro: "Formato de E-mail invalido!" })
+            return true
+        }
+        if (!regexSenha[0].test(state.password)) {
+            var message = 'A senha deve conter: '
+            var regex = regexSenha[1]
+            if (!regex.test(state.password)) {
+                message += '1 letra minuscula '
+            }
+            regex = regexSenha[2]
+            if (!regex.test(state.password)) {
+                message += '1 letra maiuscula '
+            }
+            regex = regexSenha[3]
+            if (!regex.test(state.password)) {
+                message += '1 numero '
+            }
+            regex = regexSenha[4]
+            if (!regex.test(state.password)) {
+                message += '1 caractere especial (!@#$%&*.?;, )'
+            }
+            setErroState({ stateError: true, messageErro: message })
+            return true
+        }
+        if (state.password !== state.passwordConfirmation) {
+            setErroState({ stateError: true, messageErro: 'As senhas devem ser iguais!' })
+            return true
+        }
     }
 
     return(
@@ -75,6 +118,7 @@ export default function Login() {
                             name='email'
                             onChange={handleState}
                             required
+                            placeholder="nome.sobrenome@aluno.educacao.pe.gov.br"
                         />
                     </div>
 
@@ -88,6 +132,7 @@ export default function Login() {
                             required
                             minLength='8'
                             maxLength='16'
+                            placeholder="Aa@12345"
                         />
                     </div>
 
@@ -101,6 +146,7 @@ export default function Login() {
                             required
                             minLength='8'
                             maxLength='16'
+                            placeholder="Aa@12345"
                         />
                     </div>
 
@@ -115,7 +161,7 @@ export default function Login() {
                     
                     {erroState.stateError && (
                         <div className='form-group'>
-                            <div className='alert alert-danger' role='alert'>
+                            <div className='alert alert-danger alrt-block' role='alert'>
                                 {erroState.messageErro}
                             </div>
                         </div>

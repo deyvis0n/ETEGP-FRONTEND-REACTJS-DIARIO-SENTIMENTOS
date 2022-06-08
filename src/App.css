@@ -4,7 +4,7 @@ label {
 }
 
 .card-container.card {
-  max-width: 350px !important;
+  max-width: 450px !important;
   padding: 40px 40px;
 }
 
@@ -79,6 +79,11 @@ label {
 }
 
 .btn-gp {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.alrt-block {
   margin-top: 16px;
   width: 100%;
 }

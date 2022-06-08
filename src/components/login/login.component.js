@@ -29,7 +29,7 @@ export default function Login() {
                     ((error.response && error.response.data && error.response.data.message) ||
                     error.message || error.toString())
 
-                    setErroState({ stateError: true, messageErro: resErro })
+                    setErroState({ stateError: true, messageErro: 'Email ou senha invalidos' })
             }
         )
     }
@@ -51,6 +51,7 @@ export default function Login() {
                             className='form-control'
                             name='email'
                             onChange={handleState}
+                            placeholder="nome.sobrenome@aluno.educacao.pe.gov.br"
                             required
                         />
                     </div>
@@ -63,6 +64,7 @@ export default function Login() {
                             name='password'
                             onChange={handleState}
                             required
+                            placeholder="Aa@12345"
                         />
                     </div>
                     <div className='form-group'>
@@ -77,7 +79,7 @@ export default function Login() {
 
                     {erroState.stateError && (
                         <div className='form-group'>
-                            <div className='alert alert-danger' role='alert'>
+                            <div className='alert alert-danger alrt-block' role='alert'>
                                 {erroState.messageErro}
                             </div>
                         </div>
