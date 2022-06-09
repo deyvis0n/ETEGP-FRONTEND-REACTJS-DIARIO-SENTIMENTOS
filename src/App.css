@@ -1,3 +1,7 @@
+body {
+  background-image: url("./img/05ed15cd-274b-4278-a7d7-c3ca3849b083.jpg");
+}
+
 label {
   display: block;
   margin-top: 10px;
@@ -21,14 +25,33 @@ label {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
+.card-header {
+  padding-top: 0px; 
+  padding-bottom: 6px;
+}
+
+.card-header-text {
+  width: 100%;
+}
+
 .profile-img-card {
   width: 96px;
   height: 96px;
-  margin: 0 auto 10px;
+  margin: 0 auto 20px;
   display: block;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+
+.post-img-card {
+  width: 26px;
+  height: 26px;
+  margin-right: 16px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%; 
 }
 
 .alert {
@@ -39,7 +62,9 @@ label {
 }
 
 .navbar {
-  background-color: yellow;
+  min-width: 600px;
+  background-color: #FFDE59;
+  box-shadow: 0px 6px 6px rgb(146, 139, 139);
 }
 
 .navbar-brand {
@@ -54,6 +79,7 @@ label {
 .home {
   text-align: center;
   margin-top: 50px;
+  min-width: 600px;
 }
 
 .home-titulo {
@@ -86,4 +112,73 @@ label {
 .alrt-block {
   margin-top: 16px;
   width: 100%;
+}
+
+.margin-box {
+  margin: 0 auto 25px;
+}
+
+.flex-box {
+  display: flex
+}
+
+.flex-item {
+  margin: 40px 30px;
+  padding: 20px 25px;
+  box-shadow: 6px 6px 10px rgb(146, 139, 139);
+  background-color: #f7f7f7;
+}
+
+.fi-user {
+  width: 400px;
+  height: 500px;
+  margin-right: 15px;
+  text-align: center;
+}
+
+.fi-post-box {
+  height: 200px;
+}
+
+.fi-user img {
+  margin-bottom: 26px;
+}
+
+.fi-post {
+  margin-left: 15px;
+}
+
+.fi-post textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.fi-post hr {
+  border: 0;
+	border-top: 2px solid #CCC;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.user-container {
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+}
+
+.btn-post {
+  margin-top: 16px;
+}
+
+.all-post {
+  width: 100%;
+}
+
+.post-items {
+  width: 100%;
+  margin: 40px 30px;
+  padding: 20px 25px;
+  box-shadow: 6px 6px 10px rgb(146, 139, 139);
+  background-color: rgba(247,247,247,0.5);
 }

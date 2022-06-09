@@ -16,9 +16,9 @@ export default function BoardUser() {
         setState(state)
     }
 
-    function handlePost(event) {
+    async function handlePost(event) {
         event.preventDefault()
-        UserService.postUserPost(state.userPost)
+        await UserService.postUserPost(state.userPost)
         window.location.reload()
     }
 
@@ -37,60 +37,75 @@ export default function BoardUser() {
         getPostValue()
     }
 
-    function deletePost(event) {
+    async function deletePost(event) {
         event.preventDefault()
-        UserService.deleteUserPost(event.target.deletepost.value)
+        await UserService.deleteUserPost(event.target.deletepost.value)
         window.location.reload()
     }
 
     return(
-        <div className='board-user'>
-            <h2>Minha Pagina</h2>
-
-            <h3>Bem vindo {currentUser.name}</h3>
-
-            <form onSubmit={handlePost}>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='userPost'></label>
-                    <textarea 
-                    className='form-control' 
-                    name='userPost' 
-                    rows='3' 
-                    placeholder='Como foi seu dia hoje?'
-                    onChange={handleState}
-                    ></textarea>
-                </div>
-                
-                <div className='form-group btn-form'>
-                    <button
-                        type='submit'
-                        className='btn btn-primary btn-blck'
-                    >Postar</button>
-                </div>
-            </form>
-            <h2>Minhas Postagens</h2>
-            {getUserPost && 
-                getUserPost.map((value) =>
-                <div className='col-md-6'>
-                    <div className='card border-dark mb-3' key={value}>
-                        <div className='card-header bg-transparent border-gray'>Postado Por {value.userName}</div>
-                        <div className='card-body text-dark'>
-                            <p className='card-text'>{value.message}</p>
-                        </div>
-                        <div className='card-footer bg-transparent border-gray'>Postado as {value.date}
-                            <form onSubmit={deletePost}>
-                                <button
-                                name='deletepost'
-                                type='submit'
-                                className='btn btn-primary btn-sm'
-                                value={value.id}
-                                >Deletar</button>
-                            </form>
+        <div className="flex-box user-container">
+            <div className="flex-item fi-user">
+                <img
+                    src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+                    alt='profile-img'
+                    className='profile-img-card'
+                />
+                <h2>{currentUser.name}</h2>
+            </div>
+            <div className="flex-item fi-post">
+                <form onSubmit={handlePost}>
+                    <div className='form-group'>
+                        <label htmlFor='userPost'></label>
+                        <textarea 
+                        className='form-control' 
+                        name='userPost' 
+                        rows='3' 
+                        placeholder='Como foi seu dia hoje?'
+                        onChange={handleState}
+                        ></textarea>
+                    </div>
+                        
+                    <div className='form-group btn-form'>
+                        <button
+                            type='submit'
+                            className='btn btn-primary btn-blck'
+                        >Postar</button>
+                    </div>
+                </form>
+                <hr></hr>
+                <h2>Minhas Postagens</h2>
+                {getUserPost && 
+                    getUserPost.map((value) =>
+                    <div>
+                        <div className='card border-dark mb-3' key={value}>
+                            <div className='card-header bg-transparent border-gray flex-box'>
+                                <img
+                                    src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+                                    alt='profile-img'
+                                    className='post-img-card'
+                                />
+                                <div className='card-header-text'>
+                                    {value.userName}
+                                </div>
+                            </div>
+                            <div className='card-body text-dark'>
+                                <p className='card-text'>{value.message}</p>
+                            </div>
+                            <div className='card-footer bg-transparent border-gray'>Postado as {value.date}
+                                <form onSubmit={deletePost}>
+                                    <button
+                                    name='deletepost'
+                                    type='submit'
+                                    className='btn btn-primary btn-sm btn-post'
+                                    value={value.id}
+                                    >Deletar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 )}
-
+            </div>
         </div>
     )
 }

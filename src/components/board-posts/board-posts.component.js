@@ -20,20 +20,31 @@ export default function Home() {
         getAllPostValue()
     }
     return(
-        <div>
-            <h2>Postagens Recentes</h2>
-            {getRecentPost && 
-                getRecentPost.map((value) =>
-                <div className='col-md-6'>
-                    <div className='card border-dark mb-3' key={value.id}>
-                        <div className='card-header bg-transparent border-gray'>Postado Por {value.userName}</div>
-                        <div className='card-body text-dark'>
-                            <p className='card-text'>{value.message}</p>
+        <div className="user-container">
+            <div className="post-items fi-post">
+                <h2>Postagens Recentes</h2>
+                {getRecentPost && 
+                    getRecentPost.map((value) =>
+                    <div>
+                        <div className='card border-dark mb-3' key={value.id}>
+                        <div className='card-header bg-transparent border-gray flex-box'>
+                                <img
+                                    src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+                                    alt='profile-img'
+                                    className='post-img-card'
+                                />
+                                <div className='card-header-text'>
+                                    {value.userName}
+                                </div>
+                            </div>
+                            <div className='card-body text-dark'>
+                                <p className='card-text'>{value.message}</p>
+                            </div>
+                            <div className='card-footer bg-transparent border-gray'>postado as {value.date}</div>
                         </div>
-                        <div className='card-footer bg-transparent border-gray'>postado as {value.date}</div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
         
     )
