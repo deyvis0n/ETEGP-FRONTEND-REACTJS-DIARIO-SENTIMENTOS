@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react'
+import img from '../../img/navbar-img.png'
 
 import AuthService from '../../services/auth.service'
 
@@ -13,7 +14,11 @@ export default function NavBar() {
     return (
         <nav className='navbar navbar-expand'>
             <Link to={'/home'} className='navbar-brand'>
-                Meu Site
+            <img
+                    src={img}
+                    alt='nav-bar-img'
+                    className='navbar-img'
+                />
              </Link>
             { currentUser ? (
                 <div className='navbar-nav ml-auto'>

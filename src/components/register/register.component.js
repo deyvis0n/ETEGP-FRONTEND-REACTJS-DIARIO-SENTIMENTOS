@@ -88,6 +88,7 @@ export default function Login() {
 
     return(
         <div className='col-md-12'>
+            <h1>CADASTRO</h1>
             <div className='card card-container'>
                 <img
                     src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
@@ -153,11 +154,11 @@ export default function Login() {
                     <div className='form-group'>
                         <button
                             type='submit'
-                            className='btn btn-primary btn-blck btn-gp'
+                            className='btn btn-secondary btn-blck btn-gp'
                         >Cadastre-se</button>
                     </div>
 
-                    <a className='btn btn-secondary btn-gp' href='/login' role='button'>Logar</a>
+                    <a className='btn btn-light btn-gp btn-border' href='/login' role='button'>Logar</a>
                     
                     {erroState.stateError && (
                         <div className='form-group'>
